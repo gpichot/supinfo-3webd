@@ -2,6 +2,15 @@
 
 A project to learn about the PokeAPI and React.
 
+## Bootstrapping
+
+This project was bootstrapped with [this
+template](https://github.com/gpichot/rapide/templates/react).
+
+```
+npx degit gpichot/rapide/templates/react pokeapp
+```
+
 ## Getting Started
 
 1. Clone this repository.
