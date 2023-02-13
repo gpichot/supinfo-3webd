@@ -3,17 +3,20 @@ import { TextField } from "@mui/material";
 
 import PokemonCard from "./pokemons/components/PokemonCard";
 import PokemonList from "./pokemons/components/PokemonList";
-import pokemons from "./pokemons.json";
+import { usePokemonListQuery } from "./pokemons/queries";
 
 import "./globals.scss";
 
-type PokemonList = typeof pokemons;
-
 function App() {
   const [searchText, setSearchText] = React.useState("");
-  const filteredPokemons = pokemons.filter((pokemon) =>
-    pokemon.name.includes(searchText)
-  );
+
+  const pokemonListQuery = usePokemonListQuery({ searchText });
+
+  if (pokemonListQuery.isLoading) return <p>Loading</p>;
+  if (pokemonListQuery.isError) return <p>Error</p>;
+
+  const { data: pokemons } = pokemonListQuery;
+  const filteredPokemons = pokemons.results;
   return (
     <div>
       <h1>Pokedex</h1>

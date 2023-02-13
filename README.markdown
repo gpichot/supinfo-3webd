@@ -20,3 +20,7 @@ npx degit gpichot/rapide/templates/react pokeapp
 3. Start the development server with `yarn dev`.
 
 4. Enjoy 🥳
+
+## Api Docs
+
+[https://pokeapi.fly.dev/docs/](https://pokeapi.fly.dev/docs/)
