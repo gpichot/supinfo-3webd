@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 
 import PokemonCard from "./pokemons/components/PokemonCard";
 import PokemonList from "./pokemons/components/PokemonList";
@@ -19,7 +19,7 @@ function App() {
   const filteredPokemons = pokemons.results;
   return (
     <div>
-      <h1>Pokedex</h1>
+      <h1>Pokedex {pokemonListQuery.isFetching && <CircularProgress />}</h1>
       <TextField
         name="searchText"
         placeholder="Search pokemons..."
