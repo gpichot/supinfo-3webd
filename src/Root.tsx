@@ -23,6 +23,7 @@ export function NavBar() {
     >
       <Link to="/">Accueil</Link>
       <Link to="/team">Team</Link>
+      <Link to="/pokemons/form">Add Pokemon</Link>
     </nav>
   );
 }

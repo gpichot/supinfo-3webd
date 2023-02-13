@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.css";
 
 import PokemonDetails from "./pokemons/components/PokemonDetails";
+import PokemonForm from "./pokemons/components/PokemonForm";
 import App from "./App";
 import Root from "./Root";
 import * as rootModule from "./Root";
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             <div>BENG.3 en pleine forme!</div>
           </div>
         ),
+      },
+      {
+        path: "/pokemons/form",
+        element: <PokemonForm />,
       },
     ],
   },
