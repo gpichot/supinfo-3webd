@@ -8,8 +8,7 @@ import PokemonCard from "./PokemonCard";
 
 export default function PokemonDetails() {
   const { pokemonId } = useParams();
-  const id = pokemonId ? parseInt(pokemonId) : null;
-  const pokemonDetailQuery = usePokemonDetailQuery(id);
+  const pokemonDetailQuery = usePokemonDetailQuery(pokemonId || null);
 
   if (pokemonDetailQuery.isLoading) return <div>Loading</div>;
   if (pokemonDetailQuery.isError) return <div>Error</div>;

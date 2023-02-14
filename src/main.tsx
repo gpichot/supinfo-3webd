@@ -8,7 +8,7 @@ import "./index.css";
 
 import PokemonDetails from "./pokemons/components/PokemonDetails";
 import PokemonForm from "./pokemons/components/PokemonForm";
-import App from "./App";
+import PokemonListPage from "./pokemons/components/PokemonListPage";
 import Root from "./Root";
 import * as rootModule from "./Root";
 
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <App />,
+        element: <PokemonListPage />,
       },
       {
         path: "/pokemons/:pokemonId",

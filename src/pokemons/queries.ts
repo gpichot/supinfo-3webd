@@ -27,7 +27,7 @@ export function usePokemonListQuery(options: { searchText?: string } = {}) {
   );
 }
 
-export function usePokemonDetailQuery(id: number | null) {
+export function usePokemonDetailQuery(id: string | number | null) {
   return useQuery(
     ["pokemons", id],
     async () => {

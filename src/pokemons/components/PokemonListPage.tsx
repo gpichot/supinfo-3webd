@@ -1,14 +1,16 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 import { CircularProgress, TextField } from "@mui/material";
 
-import PokemonCard from "./pokemons/components/PokemonCard";
-import PokemonList from "./pokemons/components/PokemonList";
-import { usePokemonListQuery } from "./pokemons/queries";
+import { usePokemonListQuery } from "../queries";
+import PokemonCard from "./PokemonCard";
+import PokemonList from "./PokemonList";
 
-import "./globals.scss";
+import "../../globals.scss";
 
 function App() {
-  const [searchText, setSearchText] = React.useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchText = searchParams.get("searchText") || "";
 
   const pokemonListQuery = usePokemonListQuery({ searchText });
 
@@ -28,7 +30,7 @@ function App() {
           width: "100%",
           marginBottom: 10,
         }}
-        onChange={(e) => setSearchText(e.target.value)}
+        onChange={(e) => setSearchParams({ searchText: e.target.value })}
       />
       <PokemonList>
         {filteredPokemons.map((pokemon) => (
