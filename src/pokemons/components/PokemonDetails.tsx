@@ -26,6 +26,12 @@ export default function PokemonDetails() {
         {pokemon.name} {pokemonDetailQuery.isFetching && <CircularProgress />}
       </h1>
       <img src={pokemon.image} alt={pokemon.name} />
+      <h2>Stats</h2>
+      <ul>
+        <li>HP: {pokemon.stats.hp}</li>
+        <li>Defense: {pokemon.stats.defense}</li>
+        <li>Attack: {pokemon.stats.attack}</li>
+      </ul>
     </div>
   );
 }

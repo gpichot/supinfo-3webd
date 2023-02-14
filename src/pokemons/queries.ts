@@ -32,6 +32,7 @@ export function usePokemonListQuery(
 }
 
 export function usePokemonDetailQuery(id: string | number | null) {
+  console.log(`${baseUrl}/pokemons/${id}`);
   return useQuery(
     ["pokemons", id],
     async () => {
