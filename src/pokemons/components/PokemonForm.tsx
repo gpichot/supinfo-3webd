@@ -1,11 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { TextField } from "@mui/material";
+import { create } from "@mui/material/styles/createTransitions";
 
-type PokemonFormValues = {
-  name: string;
-  type: string;
-  height: number;
-  weight: number;
-};
+import { useCreatePokemonMutation } from "../mutations";
+import { PokemonFormValues } from "../types";
+
+function Control({ children }: { children: React.ReactNode }) {
+  return <div style={{ width: "100%", margin: "5px 0" }}>{children}</div>;
+}
 
 export default function PokemonForm() {
   const [values, setValues] = React.useState<PokemonFormValues>({
@@ -13,6 +16,14 @@ export default function PokemonForm() {
     type: "",
     height: 0,
     weight: 0,
+  });
+  const navigate = useNavigate();
+
+  const createPokemonMutation = useCreatePokemonMutation({
+    onSuccess: () => {
+      alert("Pokemon created");
+      navigate("/");
+    },
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,52 +35,62 @@ export default function PokemonForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(values);
+
+    createPokemonMutation.mutate(values);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input
+    <form
+      style={{
+        display: "flex",
+        flexFlow: "column nowrap",
+        alignItems: "stretch",
+      }}
+      onSubmit={handleSubmit}
+    >
+      <Control>
+        <TextField
+          label="name"
           type="text"
           name="name"
           id="name"
           value={values.name}
           onChange={handleChange}
         />
-      </div>
-      <div>
-        <label htmlFor="type">Type</label>
-        <input
+      </Control>
+      <Control>
+        <TextField
+          label="Type"
           type="text"
           name="type"
           id="type"
           value={values.type}
           onChange={handleChange}
         />
-      </div>
-      <div>
-        <label htmlFor="height">Height</label>
-        <input
+      </Control>
+      <Control>
+        <TextField
+          label="Height"
           type="number"
           name="height"
           id="height"
           value={values.height}
           onChange={handleChange}
         />
-      </div>
-      <div>
-        <label htmlFor="weight">Weight</label>
-        <input
+      </Control>
+      <Control>
+        <TextField
+          label="Weight"
           type="number"
           name="weight"
           id="weight"
           value={values.weight}
           onChange={handleChange}
         />
-      </div>
-      <button type="submit">Submit</button>
+      </Control>
+      <button type="submit" disabled={createPokemonMutation.isLoading}>
+        Submit
+      </button>
     </form>
   );
 }

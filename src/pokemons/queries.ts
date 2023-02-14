@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { PokemonType } from "@/types";
 
-const baseUrl = "https://pokeapi.fly.dev/3webd";
+import { baseUrl } from "./config";
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
