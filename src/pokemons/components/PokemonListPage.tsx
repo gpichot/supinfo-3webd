@@ -11,8 +11,11 @@ import "../../globals.scss";
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchText = searchParams.get("searchText") || "";
+  const offsetParam = searchParams.get("offset");
+  const offset = offsetParam ? parseInt(offsetParam) : 0;
+  const limit = 9;
 
-  const pokemonListQuery = usePokemonListQuery({ searchText });
+  const pokemonListQuery = usePokemonListQuery({ searchText, offset, limit });
 
   if (pokemonListQuery.isLoading) return <p>Loading</p>;
   if (pokemonListQuery.isError) return <p>Error</p>;
@@ -32,6 +35,30 @@ function App() {
         }}
         onChange={(e) => setSearchParams({ searchText: e.target.value })}
       />
+      <nav>
+        <button
+          disabled={!pokemons.previousOffset}
+          onClick={() =>
+            setSearchParams((prev) => ({
+              ...prev,
+              offset: pokemons.previousOffset,
+            }))
+          }
+        >
+          Previous
+        </button>
+        <button
+          disabled={!pokemons.nextOffset}
+          onClick={() =>
+            setSearchParams((prev) => ({
+              ...prev,
+              offset: pokemons.nextOffset,
+            }))
+          }
+        >
+          Next
+        </button>
+      </nav>
       <PokemonList>
         {filteredPokemons.map((pokemon) => (
           <PokemonCard key={pokemon.id} pokemon={pokemon} />

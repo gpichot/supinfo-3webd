@@ -6,18 +6,22 @@ import { baseUrl } from "./config";
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
-export function usePokemonListQuery(options: { searchText?: string } = {}) {
-  const { searchText = "" } = options;
+export function usePokemonListQuery(
+  options: { searchText?: string; offset?: number; limit?: number } = {}
+) {
+  const { searchText = "", limit = 9, offset = 0 } = options;
   return useQuery(
-    ["pokemons", { searchText }],
+    ["pokemons", { searchText, limit, offset }],
     async () => {
       const response = await fetch(
-        `${baseUrl}/pokemons?limit=10&searchText=${searchText}`
+        `${baseUrl}/pokemons?limit=${limit}&searchText=${searchText}&offset=${offset}`
       );
       const json = await response.json();
       await sleep();
 
       return json as {
+        previousOffset: number | null;
+        nextOffset: number | null;
         results: PokemonType[];
       };
     },
