@@ -204,3 +204,6 @@ storybook-static/
 .history/
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Vim,Sass,Node,yarn,macOS,StorybookJs,VisualStudioCode
+/test-results/
+/playwright-report/
+/playwright/.cache/

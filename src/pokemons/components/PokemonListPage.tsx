@@ -8,7 +8,7 @@ import PokemonList from "./PokemonList";
 
 import "../../globals.scss";
 
-function App() {
+export default function PokemonListPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchText = searchParams.get("searchText") || "";
   const offsetParam = searchParams.get("offset");
@@ -67,5 +67,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
